@@ -1,0 +1,13 @@
+#book-display{
+    background-color: rgb(169, 180, 179);
+    padding:10px;
+}
+
+#book-display div{
+    background-color: white;
+    padding:10px 0px 10px 5px;
+    margin:4px;
+}
+output{
+    background-color: greenyellow;
+}

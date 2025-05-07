@@ -7,10 +7,36 @@
     <title>Library</title>
 </head>
 <body>
-   
+    <h1>Books go here</h1>
+<div id="book-display"></div>
 
 
+<dialog id="book-dialog">
+    <form action="">
 
+        <div>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title">
+        </div>
+        <div>
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author">
+        </div>
+        <div>
+            <label for="have-read">Have Read:</label>
+            <input type="checkbox" id="have-read" name="read" value="have read">
+        </div>
+    
+        <div>
+            <button value="cancel" formmethod="dialog">Cancel</button>
+            <button id="confirm-btn" value="default">Add new book</button>
+        </div>
+
+    </form>
+</dialog>
+
+<button id="show-dialog">New Book</button>
+<output></output>
     <script src="script.js"></script>
 </body>
 </html>
