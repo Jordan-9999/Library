@@ -8,63 +8,86 @@ function Book(title, author, read) {
 this.title = title;
 this.author = author;
 this.read = read;
+};
 
-this.bookInfo = function(){
-   return this.title + ", " + this.author + ", " + this.read;
+Book.prototype.bookInfo = function(){
+  return this.title + ", " + this.author + ", " + this.read;
 };
-};
+Book.prototype.bookToggle = function(){
+ if(this.read === "Haven't read it yet."){
+  return this.read = "I've read this book!"
+ }
+ if(this.read === "I've read this book!"){
+  return this.read = "Haven't read it yet."
+ };
+}
+
 
 
 
 
 function addBookToLibrary(title, author, read) {
+ let bookObject = new Book(title, author, read);
+ bookObject.id = self.crypto.randomUUID();
+ myLibrary.push(bookObject);
 
-let bookObject = new Book(title, author, read);
-bookObject.id = self.crypto.randomUUID();
-myLibrary.push(bookObject);
-
-
-
-
-function bookDisplay(){
-    
-  for (i=0; i < myLibrary.length; i++){
-     const bookCard = document.createElement("div")
-     bookCard.setAttribute('data-book-id', bookObject.id);
-     const removeButton = document.createElement("button");
-     removeButton.textContent = "Remove";
-     
-     removeButton.addEventListener("click", function(){
-      bookCard.remove();
-
-      console.log(bookObject);
-      const index = myLibrary.indexOf(bookObject);
-      myLibrary.splice(index, 1);
-    
-    });
-  
-     console.log(bookCard.dataset.bookId);
-  
-  if(myLibrary[i] === myLibrary[myLibrary.length -1]){
-   bookCard.textContent = myLibrary[myLibrary.length -1].bookInfo();
-   display.appendChild(bookCard);
-   bookCard.appendChild(removeButton);
-  }
-  }
-    console.log(myLibrary);
-    
-    
-  };
 bookDisplay();
 };
 
+function bookDisplay(){
+    
+  const bookCard = document.createElement("div");
+  for (i=0; i < myLibrary.length; i++){
+     const bookContent = document.createElement("div")
+     bookContent.setAttribute('data-book-id', myLibrary[i].id);
 
+     
+     const removeButton = document.createElement("button");
+     removeButton.textContent = "Remove";
+     removeButton.addEventListener("click", function(){
+
+      bookCard.remove();
+      console.log(bookContent.dataset.bookId);
+      for(i=0; i < myLibrary.length; i++){
+        if(bookContent.dataset.bookId === myLibrary[i].id){
+          const index = myLibrary.indexOf(myLibrary[i]);
+          myLibrary.splice(index, 1);
+        }}
+        console.log(myLibrary);
+
+    });
+
+    const readStatus = document.createElement("button");
+    readStatus.textContent = "Read status";
+    readStatus.addEventListener("click", function(){
+      for(i=0; i < myLibrary.length; i++){
+        if(bookContent.dataset.bookId === myLibrary[i].id){
+          myLibrary[i].bookToggle();
+          bookContent.textContent = myLibrary[i].bookInfo();
+        }}
+      console.log(myLibrary);
+    });
+  
+  
+  
+  if(myLibrary[i] === myLibrary[myLibrary.length -1]){
+   bookContent.textContent = myLibrary[myLibrary.length -1].bookInfo();
+   
+   display.appendChild(bookCard);
+   bookCard.appendChild(bookContent);
+   bookCard.appendChild(removeButton);
+   bookCard.appendChild(readStatus);
+  }
+  }
+   
+    
+    
+  };
 
  
 
 
 const display = document.querySelector("#book-display");
-
 
 const showButton = document.getElementById("show-dialog");
 const bookDialog = document.getElementById("book-dialog");
@@ -72,7 +95,7 @@ const titleElement = bookDialog.querySelector("#title");
 const authorElement = bookDialog.querySelector("#author");
 const haveRead = bookDialog.querySelector("#have-read");
 const confirmBtn = bookDialog.querySelector("#confirm-btn");
-
+let readValue = "";
 
 showButton.addEventListener("click", function(){
 bookDialog.showModal();
@@ -80,6 +103,7 @@ bookDialog.showModal();
 bookDialog.addEventListener("close", function(){
   titleElement.value = "";
   authorElement.value = "";
+  haveRead.checked = false;
 });
 
 confirmBtn.addEventListener("click", function(event){
@@ -99,8 +123,8 @@ else{
     addBookToLibrary(titleElement.value, authorElement.value, readValue);
     event.preventDefault();
     bookDialog.close();
-    titleElement.value = "";
-    authorElement.value = "";}
+    console.log(myLibrary)
+}
 });
 
 
