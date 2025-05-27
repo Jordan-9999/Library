@@ -37,12 +37,15 @@ bookDisplay();
 function bookDisplay(){
     
   const bookCard = document.createElement("div");
+  bookCard.classList.add('book-card');
   for (i=0; i < myLibrary.length; i++){
      const bookContent = document.createElement("div")
+     bookContent.classList.add('book-content');
      bookContent.setAttribute('data-book-id', myLibrary[i].id);
 
      
      const removeButton = document.createElement("button");
+     removeButton.classList.add("card-button");
      removeButton.textContent = "Remove";
      removeButton.addEventListener("click", function(){
 
@@ -58,6 +61,7 @@ function bookDisplay(){
     });
 
     const readStatus = document.createElement("button");
+    readStatus.classList.add("card-button");
     readStatus.textContent = "Read status";
     readStatus.addEventListener("click", function(){
       for(i=0; i < myLibrary.length; i++){

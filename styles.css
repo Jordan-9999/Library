@@ -1,13 +1,73 @@
-#book-display{
-    background-color: rgb(169, 180, 179);
-    padding:10px;
-}
+@font-face {
+    font-family: roboto;
+    src: url(../fonts/roboto-variablefont_wdthwght-webfont.woff2)format('woff2'),
+         url(../fonts/roboto-variablefont_wdthwght-webfont.woff)format('woff')
+  }
+  
+  /*
+    Josh's Custom CSS Reset
+    https://www.joshwcomeau.com/css/custom-css-reset/
+  */
+  
+  *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    
+    * {
+      margin: 0;
+      font-family: roboto, sans-serif;
+    }
+    
+    body {
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    img, picture, video, canvas, svg {
+      display: block;
+      max-width: 100%;
+    }
+    
+    input, button, textarea, select {
+      font: inherit;
+     
+    }
+    
+    p, h1, h2, h3, h4, h5, h6 {
+      overflow-wrap: break-word;
+    }
+    
+    p {
+      text-wrap: pretty;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      text-wrap: balance;
+      margin:18px;
+    }
+    
+    #root, #__next {
+      isolation: isolate;
+    }
 
-#book-display div{
-    background-color: white;
-    padding:10px 0px 10px 5px;
-    margin:4px;
+
+#show-dialog{
+    margin:18px;
 }
-output{
-    background-color: greenyellow;
+.book-card{
+    max-width:800px;
+    min-width:600px;
+    background-color:rgb(201, 201, 201);
+    box-shadow: 2px 2px 2px;
+    padding:10px 0px 10px 5px;
+    margin:13px;
+}
+.book-content{
+    background-color: white;
+    padding:10px;
+    margin:7px;
+    
+
+}
+.card-button{
+    margin:5px;
 }
